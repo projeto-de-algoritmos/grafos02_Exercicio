@@ -1,10 +1,11 @@
-**!! Atenção: Renomeie o seu repositório para (Tema)_(NomeDoProjeto). !!** 
+** Grafos 02 - Exercícios ** 
 
 Temas: 
- - Grafos2
+
+- Grafos2
 # Resolução de exercicios 
 
-**Número da Lista**: X<br>
+**Número da Lista**: 2 <br>
 **Conteúdo da Disciplina**: Grafos 2<br>
 
 ## Alunos
@@ -19,21 +20,3 @@ Aqui serão postadas algumas resoluções de exercicios referentes ao tema de Gr
 - 1148 : https://www.beecrowd.com.br/judge/pt/problems/view/1148
 - 1123 : https://www.beecrowd.com.br/judge/pt/problems/view/1123
 - 1152 : https://www.beecrowd.com.br/judge/pt/problems/view/1152
-
-
-
-
-## Instalação 
-**Linguagem**: xxxxxx<br>
-**Framework**: (caso exista)<br>
-Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
-
-## Uso 
-Explique como usar seu projeto caso haja algum passo a passo após o comando de execução.
-
-## Outros 
-Quaisquer outras informações sobre seu projeto podem ser descritas abaixo.
-
-
-
-
