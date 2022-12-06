@@ -1,52 +1,73 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 
-#define INF 999999
+#define INF INT_MAX
+
 using namespace std;
-typedef pair<int, int> ii;
 
-int caminho[255];
-int v[255][255];
-int n, m, c, k1;
+int n, m, c, k;
+int grafo[1010][1010];
+int custo[1010];
 
-void reader()
-{
-    for (int k = c ; k < n ; ++k)
-        for (int i = 0 ; i < n ; ++i)
-            for (int j = 0 ; j < n ; ++j)
-                v[i][j] = min(v[i][j], v[i][k] + v[k][j]);
+queue<int> fila;
+
+
+void infinito(){
+	for(int i=0; i<=n; i++){
+		custo[i]= INF;
+		for(int j=0; j<=n; j++) grafo[i][j]=INF;
+	}
 }
 
-int main()
-{
-   
-    int u, w, p, v1, v2;    
-    ios_base :: sync_with_stdio(0); cin.tie(0);
-    while (1)
-    {
-        cin >> n >> m >> c >> k1;
-        if (!n) return 0;
-       
-        memset(v, INF, sizeof v);
-        memset(caminho, 0, sizeof caminho);
-       
-        for (int i = 0 ; i < m ; ++i)
-        {
-            cin >> u >> w >> p;
-            v[u][w] = v[w][u] = p;
-        }
-        int sum = 0;
-        for (int i = c - 2 ; i >= 0; --i)
-        {
-            sum += v[i][i + 1];
-           
-            caminho[i] = sum;
-        }
-        reader();
-        int ans = v[k1][c - 1];
-        for (int i = 0 ; i < c - 1; ++i)
-        {
-            ans = min(v[k1][i] + caminho[i], ans);
-        }
-        cout << ans << '\n';
-    }
+
+int dijkstra(int ori, int dest){
+	custo[ori] = 0;
+	fila.push(ori);
+	while(!fila.empty()){
+		int i = fila.front();
+		fila.pop();
+		for(int j=0; j<n; j++){
+			if(grafo[i][j] != INF && custo[j] > custo[i] + grafo[i][j]){
+				custo[j] = custo[i] + grafo[i][j];
+				fila.push(j);
+			}
+		}
+	}
+	return custo[dest];
+}
+
+int main (){
+	
+	while (scanf("%d %d %d %d", &n, &m, &c, &k), (n||m||c||k)){
+	
+		infinito(); 
+		
+		for(int i=1; i<=m; i++){ 
+			
+			
+			int u, v, p;
+			scanf("%d %d %d", &u, &v, &p);
+		
+			if(u>=c && v>=c){ 
+				
+				
+				grafo[u][v]=p;
+				grafo[v][u]=p;
+			}
+			
+			if(u>=c && v<c) grafo[u][v]=p; 
+			
+			
+			if(u<c && v>=c) grafo[v][u]=p; 
+			
+			
+			if(u<c && v<c && abs(u-v)==1){
+				//adiciono a estrada normalmente
+				grafo[u][v]=p;
+				grafo[v][u]=p;
+			}
+		}
+	
+		printf("%d\n", dijkstra(k, c-1)); 
+	}
+	return 0;
 }
